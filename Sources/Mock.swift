@@ -9,7 +9,6 @@
 //  swiftlint:disable force_unwrapping
 
 import Foundation
-import XCTest
 
 /// A Mock which can be used for mocking data requests with the `Mocker` by calling `Mocker.register(...)`.
 public struct Mock: Equatable {
