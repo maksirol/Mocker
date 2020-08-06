@@ -186,14 +186,16 @@ public struct Mock: Equatable {
         } else if mock.ignoreQuery {
             return mock.request.url!.baseString == request.url?.baseString && mock.data.keys.contains(requestHTTPMethod)
         }
-
-        return mock.request.url!.absoluteString == request.url?.absoluteString && mock.data.keys.contains(requestHTTPMethod)
+        
+        return mock.request.url!.absoluteString == request.url?.absoluteString && mock.data.keys.contains(requestHTTPMethod) && mock.headers == request.allHTTPHeaderFields
+        
     }
     
     public static func == (lhs: Mock, rhs: Mock) -> Bool {
         let lhsHTTPMethods: [String] = lhs.data.keys.compactMap { $0.rawValue }
         let rhsHTTPMethods: [String] = rhs.data.keys.compactMap { $0.rawValue }
-        return lhs.request.url!.absoluteString == rhs.request.url!.absoluteString && lhsHTTPMethods == rhsHTTPMethods
+        return lhs.request.url!.absoluteString == rhs.request.url!.absoluteString && lhsHTTPMethods == rhsHTTPMethods && lhs.headers == rhs.headers
+        
     }
 }
 
